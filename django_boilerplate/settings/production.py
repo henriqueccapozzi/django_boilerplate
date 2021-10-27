@@ -3,6 +3,12 @@ from .base import *
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
+SECRET_KEY_FROM_ENV = "DJANGO_SECRET_KEY" in os.environ
+if not SECRET_KEY_FROM_ENV:
+    raise RuntimeError(
+        "To start django with production conf the environment variable DJANGO_SECRET_KEY must be set"
+    )
+
 DEBUG = False
 
 DEPLOY_URL = os.environ.get("DEPLOY_URL", "")
