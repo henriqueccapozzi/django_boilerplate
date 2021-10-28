@@ -4,6 +4,7 @@
 {% block content %}
     <p>This is the index page</p>
 
+    <a href="{% url 'account_login' %}">Login</a>
     {{ request.user }}
 {% endblock content %}
     
