@@ -3,7 +3,7 @@ from .base import *
 DEBUG = True
 
 DEPLOY_URL = os.environ.get("DEPLOY_URL", "")
-ALLOWED_HOSTS += ["localhost", "127.0.0.1", DEPLOY_URL]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", DEPLOY_URL]
 
 
 # Config for django debug tollbar

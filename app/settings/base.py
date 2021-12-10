@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
+
 import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,16 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get(
+SECRET_KEY = config(
     "DJANGO_SECRET_KEY",
-    "django-insecure-rnkz(*n5*hp68+h)y)xj4m+rho2d-zn+-no3)dk30a$=b0l6#i",
+    default="django-insecure-rnkz(*n5*hp68+h)y)xj4m+rho2d-zn+-no3)dk30a$=b0l6#i",
 )
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -114,21 +110,21 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = config("DJ_APP_LANGUAGE_CODE", default="en-us")
 
-TIME_ZONE = "UTC"
+TIME_ZONE = config("DJ_APP_TIME_ZONE", default="UTC")
 
-USE_I18N = True
+USE_I18N = config("DJ_APP_USE_I18N", default=True, cast=bool)
 
-USE_L10N = True
+USE_L10N = config("DJ_APP_USE_L10N", default=True, cast=bool)
 
-USE_TZ = True
+USE_TZ = config("DJ_APP_USE_TZ", default=True, cast=bool)
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = "/static/"
+STATIC_URL = config("DJ_APP_STATIC_URL", default="/static/")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
