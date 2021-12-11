@@ -4,7 +4,15 @@
 {% block content %}
     <p>This is the index page</p>
 
-    <a href="{% url 'account_login' %}">Login</a>
-    {{ request.user }}
+    
+    {% if request.user.is_authenticated %}
+    <p>Current user: {{ request.user }}</p>
+    <a href="{% url 'account_logout' %}">Logout</a>
+    {% else %}
+    <p>Hello visitor, please 
+        <a href="{% url 'account_login' %}">login</a>
+    </p>
+    {% endif %}
+        
 {% endblock content %}
     
