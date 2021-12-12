@@ -27,6 +27,8 @@ services:
       - 8000:8000
     volumes:
       - .:/work
+    environment:
+      - DATABASE_URL=postgres://postgres:supersecretDbPassword@db:5432/postgres
     
 networks:
   backend:
