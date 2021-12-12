@@ -22,14 +22,16 @@ from django.contrib import admin
 
 from .views import home_view
 
+favicon_static_url = staticfiles_storage.url("favicon.ico")
 urlpatterns = [
-    path("favicon.ico", RedirectView.as_view(url=staticfiles_storage.url("favicon.ico"))),
+    path("favicon.ico", RedirectView.as_view(url=favicon_static_url)),
     path("", home_view),
     path("accounts/", include("allauth.urls")),
     path("admin/", admin.site.urls),
 ]
 
 if settings.DEBUG:
+    # Django debug toolbar settings
     import debug_toolbar
 
     urlpatterns = [

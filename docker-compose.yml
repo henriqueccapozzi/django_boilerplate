@@ -15,10 +15,19 @@ services:
         max_replicas_per_node: 1
         constraints:
           - "node.role==manager"
-
-  # django-backend:
-
-
+  django-backend:
+    build: .
+    # image: python:3.9-slim
+    tty: true
+    working_dir: /work
+    command: ./manage.py runserver 0.0.0.0:8000
+    networks:
+      - backend
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/work
+    
 networks:
   backend:
 
