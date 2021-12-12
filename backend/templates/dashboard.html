@@ -4,9 +4,20 @@
 
 {% block content %}
     <p>This is the user dashboard page for user: <strong>{{ request.user }}</strong>
-    <div id="like_button_container"></div>
 
-        
+
+    <!-- Content loaded from react component -->
+    <div class="m-3" id="like_button_container"></div>
+    <div class="m-3" id="dislike_button_container"></div>
+
+
+    <!-- Exchange object between django and javascript -->
+    {{ userInfo | json_script:"userInfo" }}    
+    <script>
+        let obj = JSON.parse(document.getElementById('userInfo').textContent)
+        console.log(obj)
+    </script>
+
 {% endblock content %}
 
 {% block script %}
