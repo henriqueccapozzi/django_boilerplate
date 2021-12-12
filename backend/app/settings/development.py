@@ -50,6 +50,8 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [
     BASE_DIR / ".." / "static",
+    BASE_DIR / ".." / "frontend" / "out",
+    BASE_DIR / ".." / "frontend" / "out" / "_next" / "static",
 ]
 
 STATIC_ROOT = BASE_DIR / ".." / "staticfiles"

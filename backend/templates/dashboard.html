@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <p>This is the user dashboard page for user: <strong>{{ request.user }}</strong>
+    <div id="like_button_container"></div>
+
+        
+{% endblock content %}
+
+{% block script %}
+    <!-- <script src="/static/components/LikeButton.js" type="text/babel"></script> -->
+    <script src="{% static 'components/LikeButton.js' %}" type="text/babel"></script>
+{% endblock script %}
+    
+    
