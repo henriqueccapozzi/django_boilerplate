@@ -8,6 +8,9 @@ django = "==3.2"
 django-allauth = "*"
 python-decouple = "*"
 dj-database-url = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "rest_framework",
     # Local
 ]
 
@@ -148,3 +149,13 @@ AUTHENTICATION_BACKENDS = [
 # -------------- Allauth configs - End
 
 LOGIN_REDIRECT_URL = "/accounts/email/"
+
+# -------------- Django rest framewor configs - Start
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 2,
+}
+# -------------- Django rest framewor configs - End
