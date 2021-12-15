@@ -20,12 +20,21 @@ from django.views.generic.base import RedirectView
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.contrib import admin
 
-from .views import home_view, protected_view
+from rest_framework import routers
+
+from .views import home_view, protected_view, UserViewSet, GroupViewSet
+
+router = routers.DefaultRouter()
+router.register(r"users", UserViewSet)
+router.register(r"groups", GroupViewSet)
+
 
 favicon_static_url = staticfiles_storage.url("favicon.ico")
 urlpatterns = [
     path("favicon.ico", RedirectView.as_view(url=favicon_static_url)),
     path("", home_view),
+    path("api/", include(router.urls)),
+    path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("dashboard/", protected_view, name="dashboard"),
     path("accounts/", include("allauth.urls")),
     path("admin/", admin.site.urls),
