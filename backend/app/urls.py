@@ -21,6 +21,7 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.contrib import admin
 
 from rest_framework import routers
+from rest_framework.authtoken import views as rest_auth_views
 
 from .views import home_view, protected_view, UserViewSet, GroupViewSet
 
@@ -35,6 +36,7 @@ urlpatterns = [
     path("", home_view),
     path("api/", include(router.urls)),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
+    path("api-token-auth/", rest_auth_views.obtain_auth_token),
     path("dashboard/", protected_view, name="dashboard"),
     path("accounts/", include("allauth.urls")),
     path("admin/", admin.site.urls),
