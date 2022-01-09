@@ -11,6 +11,7 @@ dj-database-url = "*"
 djangorestframework = "*"
 markdown = "*"
 django-filter = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"

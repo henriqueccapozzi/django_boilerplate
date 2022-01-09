@@ -1,8 +1,11 @@
+from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User, Group
+from django.middleware.csrf import get_token
+
 from rest_framework import viewsets
 from rest_framework import permissions
 from app.serializers import UserSerializer, GroupSerializer
@@ -10,6 +13,10 @@ from app.serializers import UserSerializer, GroupSerializer
 
 def home_view(request):
     return render(request, "index.html", {})
+
+
+def csrf_token_view(request):
+    return JsonResponse({"csrftoken": get_token(request)})
 
 
 # Regular function view, available only to logged_in users

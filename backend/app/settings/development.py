@@ -3,7 +3,7 @@ from .base import *
 DEBUG = True
 
 DEPLOY_URL = os.environ.get("DEPLOY_URL", "")
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", DEPLOY_URL]
+ALLOWED_HOSTS = ["*", "127.0.0.1", DEPLOY_URL]
 
 
 # Config for django debug tollbar
@@ -29,6 +29,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -41,9 +42,6 @@ MIDDLEWARE = [
 ACCOUNT_EMAIL_VERIFICATION = "none"
 
 AUTH_PASSWORD_VALIDATORS = []
-
-CORS_ALLOW_ALL_ORIGINS = True
-
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
@@ -60,3 +58,9 @@ STATIC_ROOT = BASE_DIR / ".." / "staticfiles"
 REST_FRAMEWORK["DEFAULT_AUTHENTICATION_CLASSES"].append(
     "rest_framework.authentication.SessionAuthentication"
 )
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = ["http://localhost:8080"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8080"]
+
+LOGIN_REDIRECT_URL = "/dashboard/"

@@ -23,7 +23,13 @@ from django.contrib import admin
 from rest_framework import routers
 from rest_framework.authtoken import views as rest_auth_views
 
-from .views import home_view, protected_view, UserViewSet, GroupViewSet
+from .views import (
+    csrf_token_view,
+    home_view,
+    protected_view,
+    UserViewSet,
+    GroupViewSet,
+)
 
 router = routers.DefaultRouter()
 router.register(r"users", UserViewSet)
@@ -35,6 +41,7 @@ urlpatterns = [
     path("favicon.ico", RedirectView.as_view(url=favicon_static_url)),
     path("", home_view),
     path("api/", include(router.urls)),
+    path("csrf/", csrf_token_view),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("api-token-auth/", rest_auth_views.obtain_auth_token),
     path("dashboard/", protected_view, name="dashboard"),
