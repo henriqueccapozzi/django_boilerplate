@@ -20,11 +20,17 @@ def csrf_token_view(request):
 
 
 # Regular function view, available only to logged_in users
+def auth_view(request):
+    return JsonResponse({"isAuthenticated": request.user.is_authenticated})
+
+
 @login_required
 def protected_view(request):
     ctx = {
         "userInfo": {
-            "userId": f"{reverse('admin:auth_user_changelist')}{request.user.id}",
+            "userId": request.user.id,
+            "role": "Admin",
+            "userUrl": f"{reverse('admin:auth_user_changelist')}{request.user.id}",
             "firstName": request.user.first_name,
             "lastName": request.user.last_name,
             "email": request.user.email,
@@ -32,7 +38,7 @@ def protected_view(request):
             "dateJoined": request.user.date_joined,
         }
     }
-    return render(request, "dashboard.html", ctx)
+    return JsonResponse(ctx)
 
 
 # DRF - viewsets
