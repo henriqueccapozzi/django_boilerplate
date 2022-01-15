@@ -25,17 +25,12 @@ else:
 
 INSTALLED_APPS += ["debug_toolbar"]
 
-MIDDLEWARE = [
-    "django.middleware.security.SecurityMiddleware",
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
-]
+MIDDLEWARE = (
+    MIDDLEWARE[:1]
+    + ["debug_toolbar.middleware.DebugToolbarMiddleware"]
+    + MIDDLEWARE[1:]
+)
+
 # END Config for django debug tollbar
 
 
