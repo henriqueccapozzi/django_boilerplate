@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "corsheaders",
     # Local
+    "reservations",
 ]
 
 MIDDLEWARE = [
@@ -156,7 +157,7 @@ LOGIN_REDIRECT_URL = "/accounts/email/"
 # -------------- Django rest framewor configs - Start
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.TokenAuthentication",
+        # "rest_framework.authentication.TokenAuthentication",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",

@@ -32,9 +32,12 @@ from .views import (
     GroupViewSet,
 )
 
+from reservations.views import ReservationViewSet
+
 router = routers.DefaultRouter()
 router.register(r"users", UserViewSet)
 router.register(r"groups", GroupViewSet)
+router.register(r"reservations", ReservationViewSet)
 
 
 favicon_static_url = staticfiles_storage.url("favicon.ico")
@@ -48,6 +51,7 @@ urlpatterns = [
     path("api-token-auth/", rest_auth_views.obtain_auth_token),
     path("dashboard/", protected_view, name="dashboard"),
     path("accounts/", include("allauth.urls")),
+    path("reservations/", include("reservations.urls")),
     path("admin/", admin.site.urls),
 ]
 
