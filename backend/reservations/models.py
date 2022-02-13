@@ -57,9 +57,9 @@ class Reservation(models.Model):
     def save(self, *args, **kwargs):
         qs = Reservation.objects.filter(
             user=self.user, status__in=[ReservationStatus.ACTIVE, ReservationStatus.SCHEDULED]
-        )
+        ).exclude(id=self.id)
         if qs.count() >= DEFAULT_MAX_USER_SIMULTANEOUS_RESERVATIONS:
-            return None
+            return
         else:
             super().save(*args, **kwargs)
 

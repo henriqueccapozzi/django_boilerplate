@@ -32,6 +32,19 @@ class ReservationTestCase(TestCase):
         ReservationLimits.objects.create(user=self.user_1, limit=1)
         ReservationLimits.objects.create(user=self.user_2, limit=2)
 
+    def test_user_can_reserve_when_he_already_have_an_ended_reservation(self):
+        r1 = Reservation.objects.create(
+            user=self.user_1,
+            needed_capacity=self.capacities["small"],
+            status=ReservationStatus.DONE,
+            start_time=timezone.now() - timedelta(days=3),
+        )
+        r2 = ReservationFactory(self.user_1, self.capacities["small"], timedelta(days=3))
+        self.assertEqual(
+            Reservation.objects.filter(user=self.user_1).count(),
+            2,
+        )
+
     def test_reservation_only_creates_if_current_user_is_bellow_allowed_limit(self):
         r1 = ReservationFactory(self.user_1, self.capacities["small"], timedelta(days=3))
         r2 = ReservationFactory(self.user_1, self.capacities["small"], timedelta(days=3))
