@@ -52,7 +52,7 @@ class Reservation(models.Model):
     )
 
     def __str__(self) -> str:
-        return f"{self.id} - {self.user} - {self.get_status_display()}"
+        return f"{self.user} - {self.get_status_display()} - start_time: {self.start_time}"
 
     def save(self, *args, **kwargs):
         qs = Reservation.objects.filter(

@@ -71,3 +71,5 @@ class ReservationTestCase(TestCase):
             MAX_RESERVATIONS,
             f"A user can't create more than the allowed simultaneous active reservations {MAX_RESERVATIONS}",
         )
+
+    # def test_different_user_can_have_different_reservation_limits(self):
