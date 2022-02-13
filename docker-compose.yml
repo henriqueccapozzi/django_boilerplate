@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   django-backend:
-    build: .
+    build: ./backend
     # image: python:3.9-slim
     tty: true
     working_dir: /work

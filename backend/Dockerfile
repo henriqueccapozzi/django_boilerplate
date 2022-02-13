@@ -4,7 +4,7 @@ WORKDIR /work
 
 RUN pip install pipenv 
 
-COPY ./build_deploy/Pipfile ./Pipfile
+COPY ./Pipfile ./Pipfile
 
 RUN pipenv update 2> /dev/null || \
     echo "====> pipenv update error" && \

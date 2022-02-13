@@ -5,6 +5,12 @@
 - The maximum time a reservation can take to be ready is 10 minutes
 - All reservations will be fullfilled with our own cloud account
 
+# Infrastructure requirements
+
+A user can only create a reservation if the server/cloud/cluster have enough
+resources at the scheduled time. For that to happen the whole reservation
+capacity is going to be considered
+
 # 1
 
 As a user, when I choose the option to create a reservation now
