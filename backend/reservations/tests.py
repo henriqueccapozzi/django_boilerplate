@@ -32,6 +32,23 @@ class ReservationTestCase(TestCase):
         ReservationLimits.objects.create(user=self.user_1, limit=1)
         ReservationLimits.objects.create(user=self.user_2, limit=2)
 
+    def test_user_can_have_multiple_ended_reservation(self):
+        number_of_reservations = 5
+        for i in range(number_of_reservations):
+            r = Reservation.objects.create(
+                user=self.user_1,
+                needed_capacity=self.capacities["small"],
+                status=ReservationStatus.DONE,
+                start_time=timezone.now() - timedelta(days=1 + i),
+            )
+
+        self.assertEqual(
+            Reservation.objects.filter(
+                user=self.user_1, status=ReservationStatus.DONE
+            ).count(),
+            number_of_reservations,
+        )
+
     def test_user_can_reserve_when_he_already_have_an_ended_reservation(self):
         r1 = Reservation.objects.create(
             user=self.user_1,
